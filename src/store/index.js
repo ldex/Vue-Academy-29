@@ -37,10 +37,11 @@ export default createStore({
   actions: {
     checkPreviousLogin({ commit }) {
       const existingToken = localStorage.getItem('auth_token');
-      if(existingToken)
+      if(existingToken) {
         commit('SET_TOKEN', existingToken);
         localStorage.setItem('auth_token', JSON.stringify(existingToken));
         axios.defaults.headers.common['Authorization'] = `Bearer ${existingToken}`;
+      }
     },
     login ({ commit }, credentials) {
       return axios
